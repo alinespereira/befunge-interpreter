@@ -62,6 +62,21 @@ setProgramBoard :: Board -> Program -> Program
 setProgramBoard board (Program _ cursor mode status stack instruction direction) =
   Program board cursor mode status stack instruction direction
 
+getCurrentInstruction :: Program -> Instruction
+getCurrentInstruction program = getBoardValue i j board
+  where
+    (Cursor i j) = programCursor program
+    board = programBoard program
+
+setProgramDirection :: MoveDirection -> Program -> Program
+setProgramDirection dir (Program board cursor mode status stack instruction _)
+  | dir /= MoveRandom = Program board cursor mode status stack instruction dir
+  | otherwise = undefined
+
+setProgramCursor :: Cursor -> Program -> Program
+setProgramCursor cursor (Program board _ mode status stack instruction direction)
+  = Program board cursor mode status stack instruction direction
+
 toggleStringMode :: Program -> Program
 toggleStringMode (Program board cursor mode status stack instruction direction)
   | mode == StringModeOn
