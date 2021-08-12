@@ -59,8 +59,7 @@ programEnded :: Program -> Bool
 programEnded = isLeft . programStatus
 
 setProgramBoard :: Board -> Program -> Program
-setProgramBoard board (Program _ cursor mode status stack instruction direction) =
-  Program board cursor mode status stack instruction direction
+setProgramBoard board program = program { programBoard = board }
 
 getCurrentInstruction :: Program -> Instruction
 getCurrentInstruction program = getBoardValue i j board
@@ -69,17 +68,16 @@ getCurrentInstruction program = getBoardValue i j board
     board = programBoard program
 
 setProgramDirection :: MoveDirection -> Program -> Program
-setProgramDirection dir (Program board cursor mode status stack instruction _)
-  | dir /= MoveRandom = Program board cursor mode status stack instruction dir
+setProgramDirection dir program
+  | dir /= MoveRandom = program { programDirection = dir }
   | otherwise = undefined
 
 setProgramCursor :: Cursor -> Program -> Program
-setProgramCursor cursor (Program board _ mode status stack instruction direction)
-  = Program board cursor mode status stack instruction direction
+setProgramCursor cursor program
+  = program { programCursor = cursor }
 
 toggleStringMode :: Program -> Program
-toggleStringMode (Program board cursor mode status stack instruction direction)
-  | mode == StringModeOn
-  = Program board cursor StringModeOff status stack instruction direction
-  | otherwise
-  = Program board cursor StringModeOn status stack instruction direction
+toggleStringMode program =
+  case stringMode program of
+    StringModeOn  -> program { stringMode = StringModeOff }
+    StringModeOff -> program { stringMode = StringModeOn }
