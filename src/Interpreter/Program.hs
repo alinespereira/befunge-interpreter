@@ -8,14 +8,14 @@ type AsciiCode = Int
 
 type ProgramError = String
 
-data StringMode = StringModeOn | StringModeOff deriving (Eq)
+data StringMode = StringModeOn | StringModeOff deriving (Show, Eq)
 
 data ProgramStatus
   = Initialized
   | Started
   | Stopped
   | Ended
-  deriving (Eq)
+  deriving (Show, Eq)
 
 data Cursor = Cursor
   { row :: Int,
