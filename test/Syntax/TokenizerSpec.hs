@@ -14,16 +14,16 @@ parseDigit :: Spec
 parseDigit = do
   describe "parseInstruction" $ do
     it "returns just a push digit instruction" $ do
-      parseInstruction '0' `shouldBe` PushDigit 0
-      parseInstruction '1' `shouldBe` PushDigit 1
-      parseInstruction '2' `shouldBe` PushDigit 2
-      parseInstruction '3' `shouldBe` PushDigit 3
-      parseInstruction '4' `shouldBe` PushDigit 4
-      parseInstruction '5' `shouldBe` PushDigit 5
-      parseInstruction '6' `shouldBe` PushDigit 6
-      parseInstruction '7' `shouldBe` PushDigit 7
-      parseInstruction '8' `shouldBe` PushDigit 8
-      parseInstruction '9' `shouldBe` PushDigit 9
+      parseInstruction '0' `shouldBe` Push (NumVal 0)
+      parseInstruction '1' `shouldBe` Push (NumVal 1)
+      parseInstruction '2' `shouldBe` Push (NumVal 2)
+      parseInstruction '3' `shouldBe` Push (NumVal 3)
+      parseInstruction '4' `shouldBe` Push (NumVal 4)
+      parseInstruction '5' `shouldBe` Push (NumVal 5)
+      parseInstruction '6' `shouldBe` Push (NumVal 6)
+      parseInstruction '7' `shouldBe` Push (NumVal 7)
+      parseInstruction '8' `shouldBe` Push (NumVal 8)
+      parseInstruction '9' `shouldBe` Push (NumVal 9)
 
 parseOperation :: Spec
 parseOperation = do
