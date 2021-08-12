@@ -58,6 +58,7 @@ test-suite befunge-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Interpreter.ProgramSpec
       Syntax.TokenizerSpec
       Paths_befunge
   hs-source-dirs:
