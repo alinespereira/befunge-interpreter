@@ -8,8 +8,7 @@ filePath = "/Users/diego.pereira/Documents/Estudos/haskell/befunge/resources/cod
 
 main :: IO ()
 main = do
-  code <- lines <$> readFile filePath
-  let prog = initProgram 16 25 code
-  print prog
+  putStrLn "Type the path to your program: "
+  print . initProgram 16 25 . lines <$> (readFile =<< getLine)
   -- let board = readBoard 25 80 <$> lines code
   return ()
